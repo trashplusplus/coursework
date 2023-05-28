@@ -1,4 +1,4 @@
-package com.coursework;
+package com.coursework.entity;
 
 import jakarta.persistence.*;
 

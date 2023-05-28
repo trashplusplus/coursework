@@ -46,8 +46,7 @@ body{
 
 .container{
 
-
-	align-items: left;
+	align-items: center;
 	display: flex;
 	text-align: center;
 	max-width: 100%;
@@ -102,7 +101,7 @@ color: green;
 }
 
 .form-button {
-  padding: 10px 20px; /* Отступы вокруг кнопки */
+  padding: 10px 10px; /* Отступы вокруг кнопки */
   background-color: #5DAD5D; /* Зеленый цвет фона кнопки */
   color: #AAFFAA; /* Белый цвет текста кнопки */
   border: none; /* Убрать границу кнопки */
@@ -113,9 +112,26 @@ color: green;
   width: 45%;
 }
 
+.basket-button {
+    padding: 10px 10px; /* Отступы вокруг кнопки */
+    background-color: #5DAD5D; /* Зеленый цвет фона кнопки */
+    color: #AAFFAA; /* Белый цвет текста кнопки */
+    border: none; /* Убрать границу кнопки */
+    border-radius: 4px; /* Закругление углов кнопки */
+    font-size: 20px; /* Размер шрифта */
+    cursor: pointer; /* Изменить курсор при наведении на кнопку */
+    font-weight: bold;
+    width: 100px;
+}
+
 .form-button:hover {
 
   background-color: #AAE1AA; /* Зеленый цвет фона при наведении */
+}
+
+.basket-button:hover {
+
+    background-color: #AAE1AA; /* Зеленый цвет фона при наведении */
 }
 
 .menu {
@@ -206,6 +222,7 @@ color: green;
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0px 0px 100px;
 }
 
 th, td {
@@ -236,5 +253,18 @@ th {
 
 .adminContainer:hover{
     transform: scale(1.05);
+}
+
+.productContainer{
+    width: 600px;
+    height: 350px;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #2C512C;
+    font-weight: bold;
+    padding: 10px;
+    transition: transform 0.3s;
+    text-align: left;
+    margin: 0px 0px 100px;
 }
 

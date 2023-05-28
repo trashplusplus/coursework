@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/main">🌿 Main</a></li>
+    <li><a href="/catalog">🌿 Products</a></li>
+    <li><a href="/settings">⚙️ Settings</a></li>
+    <li>
+        <a th:field="*{loggedUsername}">
+            <span>🧩</span>
+            <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+        </a>
+    </li>
+
+  </ul>
+</div>
+<div class="container">
+<div class = "wrapTexts">
+<h1 class = "H1">🛒 basket</h1>
+    <div class = "productContainer">
+        <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
+        <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>
+
+        <div th:if="${basketList.size() > 0}">
+            <table>
+                <thead>
+                <tr>
+                    <th>title</th>
+                    <th>cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="basketProduct : ${basketList}">
+                    <td th:text="${basketProduct.title}"></td>
+                    <td th:text="'$' + ${basketProduct.cost}"></td>
+                    <td>
+                        <form th:action="@{'/basket/remove/' + ${basketProduct.id}}" method = "post">
+                            <button type="submit" class="basket-button">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+                <h1 class="H1" th:text="'Total: $' + ${totalSum}">Total sum</h1>
+            </table>
+
+            <br>
+            <br>
+            <br>
+
+        </div>
+
+        <div th:unless="${basketList.size() > 0}">
+            <h1 class = "H2">Your basket is empty</h1>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+</div>
+</body>
+</html>

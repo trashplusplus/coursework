@@ -20,7 +20,7 @@
 </div>
 <div class="container">
 <div class = "wrapTexts">
-    <div class = "adminContainer">
+    <div class = "productContainer">
 <h1 class = "H1">All Products</h1>
     <table class = "myTable">
         <thead>
@@ -34,7 +34,7 @@
             <td>
             <a class = "settingsA" th:href="@{/catalog/{productId}(productId=${product.id})}" th:text="${product.title}"></a>
             </td>
-            <td th:text="${product.cost}"></td>
+            <td th:text="'$' + ${product.cost}"></td>
             <td>
             </td>
         </tr>

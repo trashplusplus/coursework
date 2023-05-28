@@ -1,14 +1,10 @@
 package com.coursework.controllers;
 
 import com.coursework.AuthenticationCreator;
-import com.coursework.MyUser;
-import com.coursework.Product;
+import com.coursework.entity.MyUser;
+import com.coursework.entity.Product;
 import com.coursework.services.MyUserServiceImpl;
-import com.coursework.services.ProductService;
 import com.coursework.services.ProductServiceImpl;
-import jakarta.persistence.PreUpdate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

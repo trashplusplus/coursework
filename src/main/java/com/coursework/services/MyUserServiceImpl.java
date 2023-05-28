@@ -1,7 +1,7 @@
 package com.coursework.services;
 
 import com.coursework.DAO.MyUserDAO;
-import com.coursework.MyUser;
+import com.coursework.entity.MyUser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

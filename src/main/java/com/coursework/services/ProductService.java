@@ -1,7 +1,6 @@
 package com.coursework.services;
 
-import com.coursework.MyUser;
-import com.coursework.Product;
+import com.coursework.entity.Product;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
 package com.coursework.controllers;
 
 import com.coursework.AuthenticationCreator;
-import com.coursework.MyUser;
-import com.coursework.config.SecurityConfig;
+import com.coursework.entity.MyUser;
 import com.coursework.services.MyUserServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

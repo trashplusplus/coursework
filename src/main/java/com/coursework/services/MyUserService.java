@@ -1,7 +1,6 @@
 package com.coursework.services;
 
-import com.coursework.MyUser;
-import org.springframework.stereotype.Service;
+import com.coursework.entity.MyUser;
 
 import java.util.List;
 

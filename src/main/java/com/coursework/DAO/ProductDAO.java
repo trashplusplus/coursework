@@ -1,6 +1,6 @@
 package com.coursework.DAO;
 
-import com.coursework.Product;
+import com.coursework.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.coursework;
 
 import com.coursework.DAO.MyUserDAO;
-import com.coursework.services.MyUserServiceImpl;
+import com.coursework.entity.MyUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

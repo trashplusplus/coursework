@@ -22,16 +22,19 @@
 </div>
 <div class="container">
 <div class = "wrapTexts">
-    <div class = "adminContainer">
+    <div class = "productContainer">
 
 
 <h1 class = "H1" th:text="${currentProduct.title}"></h1>
         <h1 class = "H2" th:text = "${currentProduct.description}"></h1>
-        <h1 class = "H2" th:text = "${currentProduct.cost}"></h1>
+        <h1 class = "H2" th:text = "'$' + ${currentProduct.cost}"></h1>
         <h1 class = "H2" th:text = "${currentProduct.state}"></h1>
 
 
-
+        <form th:action="@{'/catalog/' + ${productId}}" method="POST">
+            <button th:if="${currentProduct.state == 'Available'}" type="submit" class="form-button">🛒 Add to basket</button>
+            <button th:unless="${currentProduct.state == 'Available'}" type="button" class="form-button" disabled>🛒 Add to basket</button>
+        </form>
 
 </div>
 </div>

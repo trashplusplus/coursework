@@ -1,4 +1,4 @@
-package com.coursework;
+package com.coursework.entity;
 
 import jakarta.persistence.*;
 
@@ -14,15 +14,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userId", nullable = false)
+    @Column(nullable = false)
     private Long userId;
 
-    @Column(name = "courierId", nullable = false)
+    @Column(nullable = false)
     private Long courierId;
-    @Column(name = "operatorId", nullable = false)
+    @Column( nullable = false)
     private Long operatorId; //оператор который взял заказ
-    @Column(name = "orderDate", nullable = false)
+    @Column(nullable = false)
     private LocalDate orderDate;
+
     @Column(nullable = false)
     private String destination;
     @Column(nullable = false)
@@ -32,8 +33,19 @@ public class Order {
     @Column(nullable = false)
     private String note;
 
+    @Column(nullable = false)
+    private String status;
+
     public Long getId() {
         return id;
+    }
+
+    public String getStatus(){
+        return status;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
     }
 
     public void setId(Long id) {

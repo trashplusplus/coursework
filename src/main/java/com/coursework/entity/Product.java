@@ -1,4 +1,4 @@
-package com.coursework;
+package com.coursework.entity;
 
 import jakarta.persistence.*;
 
@@ -22,11 +22,15 @@ public class Product {
         this.title = title;
     }
 
-    public String getCost() {
+    public Long getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public String getFormattedCost(){
+        return "$" + cost;
+    }
+
+    public void setCost(Long cost) {
         this.cost = cost;
     }
 
@@ -53,7 +57,7 @@ public class Product {
     private String title;
 
     @Column(name = "cost")
-    private String cost;
+    private Long cost;
 
     @Column(name = "description")
     private String description;

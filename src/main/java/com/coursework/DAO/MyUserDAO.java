@@ -1,6 +1,6 @@
 package com.coursework.DAO;
 
-import com.coursework.MyUser;
+import com.coursework.entity.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
