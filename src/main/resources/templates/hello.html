@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример View с Thymeleaf</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<h1>Добро пожаловать!</h1>
+<p th:text="'Привет, ' + ${name} + '!'">Привет, Гость!</p>
+</body>
+</html>

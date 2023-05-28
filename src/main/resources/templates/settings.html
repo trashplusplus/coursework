@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}" />
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/">🌿 Main</a></li>
+    <li><a href="/catalog">🌿 Products</a></li>
+    <li><a href="#">🌿 Info</a></li>
+    <li>
+        <a th:if="${loggedUsername != null}" th:field="*{loggedUsername}" href = "/user">
+            <span>🧩</span>
+            <span th:text="*{loggedUsername}"></span>
+        </a>
+    </li>
+  </ul>
+</div>
+<div class = "container">
+<div class = "wrapTexts">
+    <h1 class = "H1">common settings</h1>
+
+    <a href="/settings/password" class = "settingsA">
+
+        <h1 class="H2">change password</h1>
+    </a>
+
+    <h1 class="H1" th:if="${userRole == 'ASSEMBLER'}">assembler settings</h1>
+
+    <a th:if="${userRole == 'ASSEMBLER'}" href="/settings/assembler" class = "settingsA">
+        <h1 class="H2">products status</h1>
+    </a>
+
+    <h1 class="H1" th:if="${userRole == 'ADMIN'}">admin settings</h1>
+
+    <a th:if="${userRole == 'ADMIN'}" href="/settings/admin" class = "settingsA">
+        <h1 class="H2">set role</h1>
+    </a>
+
+    <a th:if="${userRole == 'ADMIN'}" href="/settings/product" class = "settingsA">
+
+        <h1 class="H2">add product</h1>
+    </a>
+
+
+
+</div>
+
+
+</div>
+</body>
+</html>

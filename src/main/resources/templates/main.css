@@ -1,0 +1,182 @@
+.registerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 350px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	color: #2C512C;
+	font-weight: bold;
+	padding: 25px;
+	transition: transform 0.3s;
+	text-align: left;
+	margin: 50px;
+	
+}
+
+.registerContainer:hover{
+	 transform: scale(1.03);
+}
+
+.H1{
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 35px;
+	color: #3D723D;
+	font-weight: bold;
+	text-align: left;
+	
+}
+
+.H2{
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	color: #3D723D;
+	
+	display: flex;
+	
+}
+body{
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	background-color: #AAFFAA;
+	
+
+}
+
+.container{
+	
+
+	align-items: left;
+	display: flex;
+	text-align: center;
+	max-width: 100%;
+	margin: 60px;
+	
+}
+
+.wrapTexts{
+	flex-wrap: wrap;
+	text-align: left;
+}
+
+.headContainer{
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 25px;
+	  display: inline;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	text-align: center;
+	
+}
+
+.input-field {
+	
+  width: 400px; /* Ширина поля ввода */
+  padding: 10px; /* Отступы вокруг поля ввода */
+  border: 2px solid #3D723D; 
+  border-radius: 10px; /* Закругление углов границы */
+  font-size: 17px; /* Размер шрифта */
+  outline: none; /* Убрать контур фокуса */
+color: green;
+}
+
+.input-field:focus {
+  border-color: #3D723D; 
+  box-shadow: #3D723D; 
+
+}
+
+.input-field::placeholder {
+  color: green;
+}
+
+.form-button {
+  padding: 10px 20px; /* Отступы вокруг кнопки */
+  background-color: #5DAD5D; /* Зеленый цвет фона кнопки */
+  color: #AAFFAA; /* Белый цвет текста кнопки */
+  border: none; /* Убрать границу кнопки */
+  border-radius: 4px; /* Закругление углов кнопки */
+  font-size: 20px; /* Размер шрифта */
+  cursor: pointer; /* Изменить курсор при наведении на кнопку */
+  font-weight: bold;
+  width: 45%;
+}
+
+.form-button:hover {
+
+  background-color: #AAE1AA; /* Зеленый цвет фона при наведении */
+}
+
+.menu {
+  width: 100%; /* Ширина контейнера равна ширине видимой области страницы */
+  height: 65px; /* Высота контейнера равна высоте видимой области страницы */
+  background-color: #5DAD5D; /* Цвет фона контейнера */
+  display: flex; /* Использовать flex-раскладку для центрирования содержимого */
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  margin: 5px;
+
+  
+}
+
+.menuContainer {
+		font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   
+
+	list-style-type: none;
+
+}
+
+.menu li {
+  margin: 0 10px; /* Добавляем отступы между пунктами меню */
+  position: relative;
+   list-style: none;
+   font-weight: bold;
+}
+
+.menu li::after {
+  content: ''; /* Добавляем пустое содержимое */
+  position: absolute; /* Устанавливаем позицию псевдоэлемента */
+  bottom: -5px; /* Положение псевдоэлемента под пунктом меню */
+  left: 0;
+  width: 0; /* Изначально ширина линии равна 0 */
+  height: 2px; /* Высота линии */
+  background-color: #AAFFAA; /* Цвет линии */
+  transition: width 0.3s ease; /* Добавляем плавный переход для изменения ширины */
+}
+
+.menu li:hover::after {
+  width: 100%; /* При наведении увеличиваем ширину линии до 100% */
+}
+
+.menu li a {
+  text-decoration: none; /* Убираем подчеркивание ссылок */
+  list-style: none;
+    color: #AAFFAA;
+}
+
+table.myTable tbody tr td a.H2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5DAD5D;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+table.myTable tbody tr td a.H2:hover::after {
+    transform: scaleX(1);
+}
+.pic1{
+	width: 400px;
+	height: 200px;
+	 border: 2px solid black; 
+}

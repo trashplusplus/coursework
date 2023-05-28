@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+  <link rel ="stylesheet" type = "text/css" href = "main.css"/>
+</head>
+<body>
+
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/">🌿 Main</a></li>
+    <li><a href="/products">🌿 Products</a></li>
+    <li><a href="#">🌿 Info</a></li>
+    <li><a href="/login">🔑 Login</a></li>
+  </ul>
+</div>
+
+
+<div class = "container">
+<div class = "wrapTexts">
+<h1 class = "H1">Register an account on our online store to start purchasing construction materials</h1>
+	
+	<h1 class = "H2">Our company is a leader in the field of selling construction materials. 
+	We stand out by utilizing recycled materials as our raw resources, such as wood chips and dry branches. 
+	We prioritize environmental consciousness and sustainability. 
+	By choosing us and our products, you contribute to the well-being of the planet and help preserve trees from being cut down.
+	</h1>
+	
+	<h1 class = "H1">🌿 🌿 🌿</h1>
+</div>
+<div class = "registerContainer">
+
+<form method="post" class = "register-form" th:action = "@{/register}",
+      th:object="${myUser}">
+	    <div>
+  <label for = "username">
+    🌿 Username:
+  </label>
+
+  <input type = "text" class = "input-field" th:field="*{username}" id = "username" required><br><br>
+  </div>
+  <div>
+  <label for = "email">
+    🌿 Email:
+  </label>
+	
+  <input type = "email" class = "input-field" th:field="*{email}" id = "email" required><br><br>
+	</div>
+	<div>
+  <label for = "password">
+    🌿 Password:
+  </label>
+	
+  <input type = "password" class = "input-field" th:field="*{password}" id = "password" required><br><br>
+
+  <input type="submit" value="🌲 Register", class = "form-button">
+  	</div>
+    <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
+    <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>
+
+</form>
+</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/main">🌿 Main</a></li>
+    <li><a href="#">🌿 Goods</a></li>
+    <li><a href="/settings">⚙️ Settings</a></li>
+    <li>
+        <a th:field="*{loggedUsername}">
+            <span>🧩</span>
+            <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+        </a>
+    </li>
+    <li><a href="/logout">🚪 Logout</a></li>
+  </ul>
+</div>
+<div class="container">
+<div class = "wrapTexts">
+<h1 class = "H1">Admin Panel</h1>
+    <div class = "adminContainer">
+
+
+   <form method = "post" th:action = "@{'/settings' + '/admin/role'}" class = "adminForm">
+        <label for = "roleUsername">
+          Username
+        </label>
+
+       <input type = "text" class = "input-field" id = "roleUsername" name="roleUsername" required><br><br>
+
+       <label for = "userRole">
+            Set Role
+       </label>
+
+       <select class = "select-field" id = "userRole" name = "userRole">
+           <option value="USER">USER</option>
+           <option value="COURIER">COURIER</option>
+           <option value="OPERATOR">OPERATOR</option>
+           <option value="ASSEMBLER">ASSEMBLER</option>
+           <option value="ADMIN">ADMIN</option>
+       </select>
+
+        <br>
+       <br>
+       <input type="submit" value="🌲 Set Role", class = "form-button">
+
+
+       <p th:if="${failure}" th:text="${failure}" class="error"></p>
+       <p th:if="${success}" th:text="${success}" class="error"></p>
+   </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/main">🌿 Main</a></li>
+    <li><a href="/settings">⚙️ Settings</a></li>
+    <li>
+        <a th:field="*{loggedUsername}">
+            <span>🧩</span>
+            <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+        </a>
+    </li>
+  </ul>
+</div>
+<div class="container">
+<div class = "wrapTexts">
+    <div class = "adminContainer">
+<h1 class = "H1">All Products</h1>
+    <table class = "myTable">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${productList}">
+            <td>
+            <a class = "settingsA" th:href="@{/catalog/{productId}(productId=${product.id})}" th:text="${product.title}"></a>
+            </td>
+            <td th:text="${product.cost}"></td>
+            <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+  <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/">🌿 Main</a></li>
+    <li><a href="/products">🌿 Products</a></li>
+    <li><a href="#">🌿 Info</a></li>
+  </ul>
+</div>
+
+
+<div class = "container">
+
+<div class = "wrapTexts">
+<h1 class = "H1">login an account on our online store to start purchasing construction materials</h1>
+	
+	<h1 class = "H2">our company is a leader in the field of selling construction materials.
+	We stand out by utilizing recycled materials as our raw resources, such as wood chips and dry branches. 
+	We prioritize environmental consciousness and sustainability. 
+	By choosing us and our products, you contribute to the well-being of the planet and help preserve trees from being cut down.
+	</h1>
+	
+	<h1 class = "H1">🌿 🌿 🌿</h1>
+</div>
+
+
+<div class = "registerContainer">
+<form method="post" class = "login-form" th:action = "@{/login}">
+  <div  th:if="${param.error}" class = "alert alert-error">
+    ❌Invalid username or password
+  </div>
+  <label for = "username">
+    🌿 Username:
+  </label>
+  <input type = "text" class = "input-field" id = "username" name = "username"><br><br>
+  <label for = "password">
+    🌿 Password:
+  </label>
+  <input type = "password" class = "input-field" id = "password" name = "password"><br><br>
+  <input type="submit" value="🌲 Login", class = "form-button">
+
+</form>
+</div>
+</div>
+</body>
+</html>

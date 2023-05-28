@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}" />
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/">🌿 Main</a></li>
+    <li><a href="#">🌿 Goods</a></li>
+    <li><a href="#">🌿 Info</a></li>
+    <li>
+        <a th:if="${loggedUsername != null}" th:field="*{loggedUsername}" href = "/user">
+            <span>🧩</span>
+            <span th:text="*{loggedUsername}"></span>
+        </a>
+    </li>
+  </ul>
+</div>
+<div class = "container">
+<div class = "wrapTexts">
+    <div class = "adminContainer">
+    <h1 class = "H1">add product</h1>
+
+    <form method = "post" th:action = "@{/settings/product}" class = "adminForm">
+        <label for = "title">
+            Title
+        </label>
+        <input type = "text" class = "input-field" id = "title" th:field="${myProduct.title}" required maxlength="100"><br><br>
+        <label for = "description">
+            Description
+        </label>
+        <input type = "text" class = "input-field" th:field = "${myProduct.description}"id = "description" name = "description" required maxlength="250"><br><br>
+        <label for ="cost">
+            Cost
+        </label>
+        <input type = "text" class = "input-field" th:field = "${myProduct.cost}"id = "cost" name = "cost" required maxlength="10"><br><br>
+
+        <label for = "state">
+            State
+        </label>
+
+        <select id = "state" class = "select-field" th:field = "${myProduct.state}">
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+            <option value="Pending">Pending</option>
+        </select>
+
+
+        <br>
+        <br>
+        <input type="submit" value="🌲 Add product", class = "form-button">
+
+
+        <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
+        <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>
+    </form>
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>
