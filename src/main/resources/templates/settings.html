@@ -28,6 +28,12 @@
         <h1 class="H2">change password</h1>
     </a>
 
+    <h1 class="H1" th:if="${userRole == 'OPERATOR'}">operator settings</h1>
+
+    <a th:if="${userRole == 'OPERATOR'}" href="/settings/operator" class = "settingsA">
+        <h1 class="H2">manage orders</h1>
+    </a>
+
     <h1 class="H1" th:if="${userRole == 'ASSEMBLER'}">assembler settings</h1>
 
     <a th:if="${userRole == 'ASSEMBLER'}" href="/settings/assembler" class = "settingsA">

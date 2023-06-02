@@ -77,7 +77,7 @@ public class SettingsController {
     }
 
     @PostMapping("/admin/role")
-    public String updateRole(@RequestParam("roleUsername")String roleUsername,
+    public String updateRole(@RequestParam("roleUsername") String roleUsername,
                              @RequestParam("userRole") String userRole,
                              RedirectAttributes redirectAttributes){
 
@@ -152,6 +152,13 @@ public class SettingsController {
 
 
         return "redirect:/settings/assembler";
+    }
+
+    @GetMapping("/operator")
+    public String getOperatorPage(Model model){
+        String currentName = auth.getName();
+        model.addAttribute("loggedUsername", currentName);
+        return "operator";
     }
 
 

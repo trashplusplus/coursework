@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finish Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
+</head>
+<body>
+<div class="menuContainer">
+    <ul class="menu">
+        <li><a href="/main">🌿 Main</a></li>
+        <li><a href="#">🌿 Products</a></li>
+        <li><a href="/settings">⚙️ Settings</a></li>
+        <li>
+            <a th:field="*{loggedUsername}">
+                <span>🧩</span>
+                <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+    <div class = "wrapTexts">
+        <h1 class = "H1">Finish Panel</h1>
+        <div class = "adminContainer">
+            <h1 class = "H1" th:text="'Total: $' + ${myOrder.cost}"></h1>
+            <form th:action="@{/basket/finish/done}" method="post" th:object="${myOrder}">
+                <label for = "address">
+                    Address
+                </label>
+                <input type = "text" class = "input-field" id = "address" th:field="${myOrder.destination}"
+                       required maxlength="100"><br><br>
+
+                <label for = "note">
+                    Note
+                </label>
+                <input type = "text" class = "input-field" id = "note" th:field="${myOrder.note}"
+                       required maxlength="100"><br><br>
+                <input type = "hidden" th:value = "${myOrder.userId}">
+                <input type = "hidden" th:value = "${myOrder.cost}">
+                <button type="submit" class="basket-button">Ok</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

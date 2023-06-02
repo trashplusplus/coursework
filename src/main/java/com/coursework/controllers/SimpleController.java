@@ -2,6 +2,7 @@ package com.coursework.controllers;
 
 import com.coursework.AuthenticationCreator;
 import com.coursework.entity.BasketProduct;
+import com.coursework.entity.Order;
 import com.coursework.services.BasketService;
 import com.coursework.services.BasketServiceImpl;
 import com.coursework.entity.MyUser;
@@ -10,12 +11,10 @@ import com.coursework.services.MyUserServiceImpl;
 import com.coursework.services.ProductServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +75,9 @@ public class SimpleController {
 
     @GetMapping("/catalog")
     public String getCatalog(Model model){
-        String currentName =  auth.getName();
-        model.addAttribute("loggedUsername", currentName);
+        String currentName = auth.getName();
+        if(currentName != "anonymousUser")
+            model.addAttribute("loggedUsername", currentName);
         model.addAttribute("productList", productService.findAll());
 
         return "catalog";
@@ -109,6 +109,8 @@ public class SimpleController {
         return "redirect:/basket";
     }
 
+
+
     @GetMapping("/basket")
     public String getBasket(Model model){
 
@@ -123,11 +125,15 @@ public class SimpleController {
                     totalCost += productService.getById(product.getProductId()).getCost();
             }
 
-
+        Order myOrder = new Order();
+            myOrder.setCost(String.format("%d", totalCost));
+            myOrder.setUserId(userService.findByUsername(auth.getName()).getId());
+            //myOrder.setOrderDate(new LocalDate());
         model.addAttribute("basketList", basketProductsTitles);
         model.addAttribute("totalSum", totalCost);
-
+        model.addAttribute("myOrder", myOrder);
         model.addAttribute("loggedUsername", auth.getName());
+
         return "basket";
     }
 
@@ -151,6 +157,26 @@ public class SimpleController {
 
         System.out.println(productId);
         return "redirect:/basket";
+    }
+
+    //finish the order
+    @PostMapping("/basket/finish")
+    public String postOrderFinish(@ModelAttribute("myOrder") Order myOrder, Model model){
+
+        System.out.println(myOrder.getCost());
+        model.addAttribute("loggedUsername", auth.getName());
+
+        return "finishOrder";
+    }
+
+    @PostMapping("/basket/finish/done")
+    public String postOrderFinishDone(@ModelAttribute("myOrder") Order myOrder, Model model){
+        myOrder.setUserId(userService.findByUsername(auth.getName()).getId());
+        System.out.println(myOrder);
+
+        model.addAttribute("loggedUsername", auth.getName());
+        //заказ успешно оформлен, redirectAttributes
+        return "redirect:/user";
     }
 
 

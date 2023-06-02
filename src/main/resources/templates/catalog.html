@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Catalog</title>
     <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}"/>
 </head>
 <body>
 <div class="menuContainer">
   <ul class="menu">
    <li><a href="/main">🌿 Main</a></li>
-    <li><a href="/settings">⚙️ Settings</a></li>
-    <li>
-        <a th:field="*{loggedUsername}">
-            <span>🧩</span>
-            <span th:text="'Welcome, ' + *{loggedUsername}"></span>
-        </a>
-    </li>
+      <li>
+          <a th:if="${loggedUsername != null}" th:field="*{loggedUsername}" href = "/user">
+              <span>🧩</span>
+              <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+          </a>
+
+          <a th:if="${loggedUsername == null}" href="/login">
+              <span>🔑</span>
+              <span>Login</span>
+          </a>
+      </li>
+      <li>
+          <a th:if="${loggedUsername == null}" href="/register">
+              <span>🪐Register</span>
+          </a>
+      </li>
   </ul>
 </div>
 <div class="container">

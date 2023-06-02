@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Profile</title>
     <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}" href = "main.css"/>
 </head>
 <body>
 <div class="menuContainer">
   <ul class="menu">
    <li><a href="/main">🌿 Main</a></li>
-    <li><a href="#">🌿 Goods</a></li>
+    <li><a href="/catalog">🌿 Products</a></li>
     <li><a href="/settings">⚙️ Settings</a></li>
     <li>
         <a th:field="*{loggedUsername}">

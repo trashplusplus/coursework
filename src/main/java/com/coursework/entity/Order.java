@@ -9,14 +9,12 @@ public class Order {
     public Order(){
 
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private Long userId;
-
     @Column(nullable = false)
     private Long courierId;
     @Column( nullable = false)
@@ -27,14 +25,25 @@ public class Order {
     @Column(nullable = false)
     private String destination;
     @Column(nullable = false)
-    private Long amount;
-    @Column(nullable = false)
     private String cost;
     @Column(nullable = false)
     private String note;
 
     @Column(nullable = false)
     private String status;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    private String orderId;
+
 
     public Long getId() {
         return id;
@@ -92,13 +101,6 @@ public class Order {
         this.destination = destination;
     }
 
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
 
     public String getCost() {
         return cost;
@@ -114,5 +116,10 @@ public class Order {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s, %s, %s, %s", destination, cost, note, userId);
     }
 }
