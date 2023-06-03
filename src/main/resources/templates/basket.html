@@ -51,6 +51,8 @@
             <h1 class="H1" th:text="'Total: $' + ${totalSum}">Total sum</h1>
             <form th:action="@{'/basket/finish'}" th:object = "${myOrder}" method = "post">
                 <input type = "hidden" name = "totalSum" th:field = "${myOrder.cost}">
+                <input type = "hidden" name = "totalSum" th:field = "${myOrder.orderDate}">
+                <input type = "hidden" name = "totalSum" th:field = "${myOrder.userId}">
                 <button type = "submit" class = "basket-button">Check out</button>
             </form>
             <br>

@@ -37,8 +37,9 @@
                 </label>
                 <input type = "text" class = "input-field" id = "note" th:field="${myOrder.note}"
                        required maxlength="100"><br><br>
-                <input type = "hidden" th:value = "${myOrder.userId}">
-                <input type = "hidden" th:value = "${myOrder.cost}">
+                <input type = "hidden" th:field = "${myOrder.userId}">
+                <input type = "hidden" th:field = "${myOrder.cost}">
+                <input type = "hidden" th:field = "${myOrder.orderDate}">
                 <button type="submit" class="basket-button">Ok</button>
             </form>
 

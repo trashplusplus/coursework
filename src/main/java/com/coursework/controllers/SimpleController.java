@@ -113,7 +113,7 @@ public class SimpleController {
 
     @GetMapping("/basket")
     public String getBasket(Model model){
-
+        LocalDate date = LocalDate.now();
         Long currentUserId = userService.findByUsername(auth.getName()).getId();
         int totalCost = 0;
         List<Product> basketProductsTitles = new ArrayList<>();
@@ -128,7 +128,7 @@ public class SimpleController {
         Order myOrder = new Order();
             myOrder.setCost(String.format("%d", totalCost));
             myOrder.setUserId(userService.findByUsername(auth.getName()).getId());
-            //myOrder.setOrderDate(new LocalDate());
+            myOrder.setOrderDate(date);
         model.addAttribute("basketList", basketProductsTitles);
         model.addAttribute("totalSum", totalCost);
         model.addAttribute("myOrder", myOrder);
@@ -163,8 +163,10 @@ public class SimpleController {
     @PostMapping("/basket/finish")
     public String postOrderFinish(@ModelAttribute("myOrder") Order myOrder, Model model){
 
-        System.out.println(myOrder.getCost());
+
         model.addAttribute("loggedUsername", auth.getName());
+        model.addAttribute("myOrder", myOrder);
+        System.out.println(myOrder);
 
         return "finishOrder";
     }

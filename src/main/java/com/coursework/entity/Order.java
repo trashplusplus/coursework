@@ -13,6 +13,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
+    private Long orderId;
+
     @Column(nullable = false)
     private Long userId;
     @Column(nullable = false)
@@ -32,17 +37,14 @@ public class Order {
     @Column(nullable = false)
     private String status;
 
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private String orderId;
+
 
 
     public Long getId() {
@@ -120,6 +122,6 @@ public class Order {
 
     @Override
     public String toString(){
-        return String.format("%s, %s, %s, %s", destination, cost, note, userId);
+        return String.format("[%s], %s, %s, %s, %s", orderDate, destination, cost, note, userId);
     }
 }
