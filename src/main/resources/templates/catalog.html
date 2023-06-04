@@ -30,25 +30,26 @@
 <div class="container">
 <div class = "wrapTexts">
     <div class = "productContainer">
-<h1 class = "H1">All Products</h1>
-    <table class = "myTable">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Cost</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product : ${productList}">
-            <td>
-            <a class = "settingsA" th:href="@{/catalog/{productId}(productId=${product.id})}" th:text="${product.title}"></a>
-            </td>
-            <td th:text="'$' + ${product.cost}"></td>
-            <td>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<h1 class = "H1">🪓 Catalog</h1>
+        <table class="myTable">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${productList}">
+                <td>
+                    <span>&#x1F4D0;</span> <!-- Эмодзи треугольник -->
+                    <a class="settingsA" th:href="@{/catalog/{productId}(productId=${product.id})}" th:text="${product.title}"></a>
+                </td>
+                <td th:text="'$' + ${product.cost}"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 </div>

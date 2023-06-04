@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}" href = "main.css"/>
+</head>
+<body>
+<div class="menuContainer">
+  <ul class="menu">
+   <li><a href="/main">🌿 Main</a></li>
+    <li><a href="/catalog">🌿 Products</a></li>
+    <li><a href="/settings">⚙️ Settings</a></li>
+    <li>
+        <a th:field="*{loggedUsername}">
+            <span>🧩</span>
+            <span th:text="'Welcome, ' + *{loggedUsername}"></span>
+        </a>
+    </li>
+
+  </ul>
+</div>
+<div class="container">
+<div class = "wrapTexts">
+    <div class = "productContainer" th:object = "${currentOrder}">
+
+        <h1 class = "H1" th:text="'Order №' + ${currentOrder.id}"></h1>
+        <h1 class = "H2" th:text ="'To pay: $' + ${currentOrder.cost}"></h1>
+        <h1 class = "H2" th:text ="'Customer: ' + ${userService.getById(currentOrder.userId)}"></h1>
+        <h1 class = "H2" th:text ="'Destination: ' + ${currentOrder.destination}"></h1>
+        <h1 class = "H2" th:text ="'Order date: ' + ${currentOrder.orderDate}"></h1>
+        <h1 class = "H2" th:text ="'Phone number: ' + ${currentOrder.phoneNumber}"></h1>
+        <h1 class = "H2" th:text ="'Note: ' + ${currentOrder.note}"></h1>
+        <h1 class = "H2" th:text ="'Status: ' + ${currentOrder.status}"></h1>
+        <h1 class="H2" th:text="'Courier: ' + (${currentOrder.courierId} != null ? ${userService.getById(currentOrder.courierId)} : 'Is not Selected')"></h1>
+        <h1 class="H2" th:text="'Operator: ' + (${currentOrder.operatorId} != null ? ${userService.getById(currentOrder.operatorId)} : 'Is not Selected')"></h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="orderProduct : ${productsByOrder}">
+                <td th:text="${productService.getById(orderProduct.productId).title}"></td>
+                <td th:text="'$' + ${productService.getById(orderProduct.productId).cost}"></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <br>
+        <br>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

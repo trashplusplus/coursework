@@ -37,7 +37,11 @@
     <h1 class="H1" th:if="${userRole == 'ASSEMBLER'}">assembler settings</h1>
 
     <a th:if="${userRole == 'ASSEMBLER'}" href="/settings/assembler" class = "settingsA">
-        <h1 class="H2">products status</h1>
+        <h1 class="H2">product status</h1>
+    </a>
+
+    <a th:if="${userRole == 'ASSEMBLER'}" href="/settings/assembler/orders" class = "settingsA">
+        <h1 class="H2">order status</h1>
     </a>
 
     <h1 class="H1" th:if="${userRole == 'ADMIN'}">admin settings</h1>

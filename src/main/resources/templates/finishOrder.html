@@ -31,7 +31,11 @@
                 </label>
                 <input type = "text" class = "input-field" id = "address" th:field="${myOrder.destination}"
                        required maxlength="100"><br><br>
-
+                <label for = "phone">
+                    Phone
+                </label>
+                <input type = "text" class = "input-field" id = "phone" th:field="${myOrder.phoneNumber}"
+                       required maxlength="16"><br><br>
                 <label for = "note">
                     Note
                 </label>

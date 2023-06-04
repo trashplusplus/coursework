@@ -22,18 +22,17 @@
 </div>
 <div class="container">
     <div class = "wrapTexts">
-        <h1 class = "H1">Operator Panel</h1>
+        <h1 class = "H1">🛒 Purchase History</h1>
         <div class = "adminContainer">
-            <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
-            <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>
+            <h1 class="H2" th:if="${orderList.isEmpty()}">
+                Order history is empty.
+            </h1>
 
-            <table>
+            <table th:if="${not orderList.isEmpty()}">
                 <thead>
                 <tr>
-                    <th>Order Id</th>
+                    <th>Order №</th>
                     <th>Cost</th>
-                    <th>Customer</th>
-                    <th>Phone</th>
                     <th>Status</th>
                 </tr>
                 </thead>
@@ -48,14 +47,11 @@
             </span>
                         <span th:text="${order.id}"></span>
                     </td>
-                    <td th:text="${order.cost}"></td>
-                    <td th:text="${userService.getById(order.userId)}"></td>
-                    <td th:text="${order.phoneNumber}"></td>
+                    <td th:text="'$' + ${order.cost}"></td>
                     <td th:text="${order.status}"></td>
-
                     <td>
-                        <form th:action="@{'/settings/operator/manage/' + ${order.id}}" method="POST">
-                            <button type="submit" class="basket-button">Manage</button>
+                        <form th:action="@{'/settings/order/info/' + ${order.id}}" method="POST">
+                            <button type="submit" class="basket-button">Info</button>
                         </form>
                     </td>
                 </tr>

@@ -14,4 +14,5 @@ public interface MyUserService{
     MyUser findByEmail(String email);
 
     List<MyUser> findAll();
+    List<MyUser> findAllCouriers();
 }

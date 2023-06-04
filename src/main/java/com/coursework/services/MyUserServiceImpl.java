@@ -4,6 +4,7 @@ import com.coursework.DAO.MyUserDAO;
 import com.coursework.entity.MyUser;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class MyUserServiceImpl implements MyUserService{
@@ -43,4 +44,19 @@ public class MyUserServiceImpl implements MyUserService{
     public List<MyUser> findAll() {
         return myUserDAO.findAll();
     }
+
+    @Override
+    public List<MyUser> findAllCouriers() {
+        List<MyUser> couriers = new ArrayList<>();
+
+        for(MyUser myUser: myUserDAO.findAll()){
+            if(myUser.getRole().equals("COURIER")){
+                couriers.add(myUser);
+            }
+        }
+
+        return couriers;
+    }
+
+
 }
