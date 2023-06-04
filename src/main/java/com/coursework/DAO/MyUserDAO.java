@@ -12,4 +12,6 @@ public interface MyUserDAO extends JpaRepository<MyUser, Long> {
     MyUser findMyUserByEmail(String email);
 
     List<MyUser> findAll();
+
+    MyUser getMyUserById(Long id);
 }

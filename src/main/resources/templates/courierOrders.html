@@ -22,12 +22,16 @@
 </div>
 <div class="container">
     <div class = "wrapTexts">
-        <h1 class = "H1">Operator Panel</h1>
+        <h1 class = "H1">Courier Panel</h1>
         <div class = "adminContainer">
             <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
             <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>
 
-            <table>
+            <h1 class="H2" th:if="${orderList.isEmpty()}">
+                No active orders.
+            </h1>
+
+            <table th:if="${not orderList.isEmpty()}">
                 <thead>
                 <tr>
                     <th>Order Id</th>
@@ -42,11 +46,9 @@
                     <td>
             <span th:switch="${order.status}">
                 <span th:case="'Completed'">&#x2705;</span>
-                <span th:case="'Delivered'">&#x2705;</span>
                 <span th:case="'Checking'">&#x23F3;</span>
                 <span th:case="'Ordering'">&#x23F3;</span>
                 <span th:case="'Canceled'">&#x274C;</span>
-                <span th:case="'Not Delivered'">&#x274C;</span>
             </span>
                         <span th:text="${order.id}"></span>
                     </td>
@@ -56,7 +58,7 @@
                     <td th:text="${order.status}"></td>
 
                     <td>
-                        <form th:action="@{'/settings/operator/manage/' + ${order.id}}" method="POST">
+                        <form th:action="@{'/settings/courier/manage/' + ${order.id}}" method="POST">
                             <button type="submit" class="basket-button">Manage</button>
                         </form>
                     </td>

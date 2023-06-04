@@ -34,6 +34,12 @@
         <h1 class="H2">manage orders</h1>
     </a>
 
+    <h1 class="H1" th:if="${userRole == 'COURIER'}">courier settings</h1>
+
+    <a th:if="${userRole == 'COURIER'}" href="/settings/courier/orders" class = "settingsA">
+        <h1 class="H2">delivery manager</h1>
+    </a>
+
     <h1 class="H1" th:if="${userRole == 'ASSEMBLER'}">assembler settings</h1>
 
     <a th:if="${userRole == 'ASSEMBLER'}" href="/settings/assembler" class = "settingsA">

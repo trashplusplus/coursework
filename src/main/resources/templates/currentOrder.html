@@ -94,14 +94,17 @@
             </script>
 
             <label for="status">Status:</label>
-            <select id="status" name="status" class="select-field">
+            <select id="status" name="status" class="select-field" required th:disabled="${currentOrder.status == 'Completed'}">
                 <option value="Checking">Checking</option>
                 <option value="Ordering">Ordering</option>
+                <option value="Preparing">Preparing</option>
+                <option value="Completed">Completed</option>
+                <option value="Canceled">Canceled</option>
 
             </select>
             <br>
 
-            <button type="submit" class="form-button">Submit</button>
+            <button type="submit" class="form-button" th:disabled="${currentOrder.status == 'Completed'}">Submit</button>
         </form>
 
 

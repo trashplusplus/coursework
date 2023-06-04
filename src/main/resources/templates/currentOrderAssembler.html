@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Assembler Page</title>
     <link rel ="stylesheet" type = "text/css" media = "screen" th:href = "@{/css/main.css}" href = "main.css"/>
 </head>
 <body>
@@ -31,10 +31,8 @@
         <h1 class = "H2" th:text ="'Order date: ' + ${currentOrder.orderDate}"></h1>
         <h1 class = "H2" th:text ="'Phone number: ' + ${currentOrder.phoneNumber}"></h1>
         <h1 class = "H2" th:text ="'Note: ' + ${currentOrder.note}"></h1>
-        <h1 class = "H2" th:text ="'Status: ' + ${currentOrder.status}"></h1>
         <h1 class="H2" th:text="'Courier: ' + (${currentOrder.courierId} != null ? ${userService.getById(currentOrder.courierId)} : 'Is not Selected')"></h1>
         <h1 class="H2" th:text="'Operator: ' + (${currentOrder.operatorId} != null ? ${userService.getById(currentOrder.operatorId)} : 'Is not Selected')"></h1>
-
 
         <table>
             <thead>
@@ -56,6 +54,25 @@
 
         <br>
         <br>
+
+        <form th:action="@{'/settings/assembler/status/' + ${currentOrder.id}}" method="post">
+            <label for="status">Status:</label>
+            <select id="status" name="status" class="select-field">
+                <option value="Ready">Ready</option>
+                <option value="Preparing">Preparing</option>
+            </select>
+            <br>
+            <br>
+
+            <button type="submit" class="form-button">Submit</button>
+        </form>
+
+        <br>
+
+
+
+
+
 
     </div>
 </div>

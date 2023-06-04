@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -177,7 +178,16 @@ public class SettingsController {
     @GetMapping("/assembler/orders")
     public String getAssemblerMonitorPage(Model model){
         String currentName = auth.getName();
-        model.addAttribute("orderList", orderService.findAll());
+        //добавляем только заказы со статусом Preparing
+        List<Order> orderList = new ArrayList<>();
+
+        for(Order myOrder: orderService.findAll()){
+            if(myOrder.getStatus().equals("Preparing")){
+                orderList.add(myOrder);
+            }
+        }
+
+        model.addAttribute("orderList", orderList);
         model.addAttribute("loggedUsername", currentName);
         model.addAttribute("userService", userService);
         return "assemblerOrders";
@@ -205,7 +215,7 @@ public class SettingsController {
         model.addAttribute("userService", userService);
         model.addAttribute("productService", productService);
         model.addAttribute("currentOperatorId", userService.findByUsername(auth.getName()).getId());
-        return "currentOrder";
+        return "currentOrderAssembler";
     }
     //info of user history order
     @PostMapping("/order/info/{orderId}")
@@ -244,6 +254,73 @@ public class SettingsController {
         orderService.save(myOrder);
         return "redirect:/settings/operator";
     }
+
+    //для комплектувальника
+
+    @PostMapping("/assembler/status/{orderId}")
+    public String operatorChangeStatus(@RequestParam("status") String status,
+                                       @PathVariable long orderId,
+                                       RedirectAttributes redirectAttributes){
+
+        //System.out.printf("=== %s, %s, %s ===", status, operatorId, courierId);
+        Order myOrder = orderService.getByOrderId(orderId);
+
+
+            myOrder.setStatus(status);
+            redirectAttributes.addFlashAttribute("success", "Status has been changed");
+
+        orderService.save(myOrder);
+        return "redirect:/settings/assembler/orders";
+    }
+
+    //курьер
+
+    @GetMapping("/courier/orders")
+    public String courierPage(Model model){
+        String currentName = auth.getName();
+
+        List<Order> currentCourierList = new ArrayList<>();
+        //только те заказы которые призначены курьеру
+        for(Order order: orderService.findAll()){
+            if(order.getCourierId() == userService.findByUsername(auth.getName()).getId()
+            && (order.getStatus().equals("Ready") || order.getStatus().equals("Ordering"))){
+                currentCourierList.add(order);
+            }
+        }
+
+        model.addAttribute("orderList", currentCourierList);
+        model.addAttribute("loggedUsername", currentName);
+        model.addAttribute("userService", userService);
+        return "courierOrders";
+    }
+
+    @PostMapping("/courier/manage/{orderId}")
+    public String courierManageOrders(@PathVariable long orderId, Model model){
+        Order order = orderService.getByOrderId(orderId);
+        model.addAttribute("currentOrder", order);
+        model.addAttribute("loggedUsername", auth.getName());
+        model.addAttribute("productsByOrder", orderProductService.getAllByOrderId(orderId));
+        model.addAttribute("userService", userService);
+        model.addAttribute("productService", productService);
+        model.addAttribute("currentOperatorId", userService.findByUsername(auth.getName()).getId());
+        return "currentOrderCourier";
+    }
+
+    @PostMapping("/courier/status/{orderId}")
+    public String courierChangeStatus(@RequestParam("status") String status,
+                                       @PathVariable long orderId,
+                                       RedirectAttributes redirectAttributes){
+
+        //System.out.printf("=== %s, %s, %s ===", status, operatorId, courierId);
+        Order myOrder = orderService.getByOrderId(orderId);
+        myOrder.setStatus(status);
+        redirectAttributes.addFlashAttribute("success", "Status has been changed");
+
+        orderService.save(myOrder);
+        return "redirect:/settings/courier/orders";
+    }
+
+
 
 
 
