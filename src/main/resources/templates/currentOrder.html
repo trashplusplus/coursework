@@ -21,99 +21,98 @@
   </ul>
 </div>
 <div class="container">
-<div class = "wrapTexts">
-    <div class = "productContainer" th:object = "${currentOrder}">
+    <div class="wrapTexts">
+        <div class="productContainer" th:object="${currentOrder}">
 
-        <h1 class = "H1" th:text="'Order №' + ${currentOrder.id}"></h1>
-        <h1 class = "H2" th:text ="'To pay: $' + ${currentOrder.cost}"></h1>
-        <h1 class = "H2" th:text ="'Customer: ' + ${userService.getById(currentOrder.userId)}"></h1>
-        <h1 class = "H2" th:text ="'Destination: ' + ${currentOrder.destination}"></h1>
-        <h1 class = "H2" th:text ="'Order date: ' + ${currentOrder.orderDate}"></h1>
-        <h1 class = "H2" th:text ="'Phone number: ' + ${currentOrder.phoneNumber}"></h1>
-        <h1 class = "H2" th:text ="'Note: ' + ${currentOrder.note}"></h1>
-        <h1 class="H2" th:text="'Courier: ' + (${currentOrder.courierId} != null ? ${userService.getById(currentOrder.courierId)} : 'Is not Selected')"></h1>
-        <h1 class="H2" th:text="'Operator: ' + (${currentOrder.operatorId} != null ? ${userService.getById(currentOrder.operatorId)} : 'Is not Selected')"></h1>
+            <h1 class="H1" th:text="'📦 Order №' + ${currentOrder.id}"></h1>
+            <h1 class="H2" th:text="'To pay: $' + ${currentOrder.cost}"></h1>
+            <h1 class="H2" th:text="'Customer: ' + ${userService.getById(currentOrder.userId)}"></h1>
+            <h1 class="H2" th:text="'Destination: ' + ${currentOrder.destination}"></h1>
+            <h1 class="H2" th:text="'Order date: ' + ${currentOrder.orderDate}"></h1>
+            <h1 class="H2" th:text="'Phone number: ' + ${currentOrder.phoneNumber}"></h1>
+            <h1 class="H2" th:text="'Note: ' + ${currentOrder.note}"></h1>
+            <h1 class="H2" th:text="'Current Status: ' + ${currentOrder.status}"></h1>
+            <h1 class="H2" th:text="'Courier: ' + (${currentOrder.courierId} != null ? ${userService.getById(currentOrder.courierId)} : 'Is not Selected')"></h1>
+            <h1 class="H2" th:text="'Operator: ' + (${currentOrder.operatorId} != null ? ${userService.getById(currentOrder.operatorId)} : 'Is not Selected')"></h1>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Cost</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orderProduct : ${productsByOrder}">
+                    <td th:text="${productService.getById(orderProduct.productId).title}"></td>
+                    <td th:text="'$' + ${productService.getById(orderProduct.productId).cost}"></td>
+                </tr>
+                </tbody>
+            </table>
 
-            <tr th:each="orderProduct : ${productsByOrder}">
-                <td th:text="${productService.getById(orderProduct.productId).title}"></td>
-                <td th:text="'$' + ${productService.getById(orderProduct.productId).cost}"></td>
-            </tr>
 
-            </tbody>
+            <form th:action="@{'/settings/operator/status/' + ${currentOrder.id}}" method="post">
+                <input type="hidden" name="operatorId" th:value="${currentOperatorId}" />
 
-        </table>
+                <div class="form-row">
+                    <label for="courierId" th:disabled="${currentOrder.status != 'Checking'}">Courier:</label>
+                    <select id="courierId" name="courierId" class="input-field" required th:disabled="${currentOrder.status != 'Checking'}">
+                        <option th:selected="${currentOrder.courierId != null}" th:value="${currentOrder.courierId}" th:text="${currentOrder.courierId != null ? userService.getById(currentOrder.courierId) : 'Is not Selected'}"></option>
+                    </select>
+                </div>
+                <br>
 
-        <br>
-        <br>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $.ajax({
+                            url: "/api/couriers",
+                            type: "GET",
+                            dataType: "json",
+                            success: function(data) {
+                                var courierIdSelect = $("#courierId");
+                                courierIdSelect.empty();
 
-        <form th:action="@{'/settings/operator/status/' + ${currentOrder.id}}" method="post">
-            <input type="hidden" name="operatorId" th:value="${currentOperatorId}" />
+                                // Генерируем элементы <option> для каждого курьера
+                                data.forEach(function(courier) {
+                                    courierIdSelect.append($('<option></option>').val(courier.id).text(courier.username));
+                                });
 
-            <label for="courierId" th:disabled="${currentOrder.status == 'Completed'}">Courier ID:</label>
-            <select id="courierId" name="courierId" class="input-field" required th:disabled="${currentOrder.status == 'Completed'}">
-            </select>
-            <br>
-
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $.ajax({
-                        url: "/api/couriers",
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            var courierIdSelect = $("#courierId");
-                            courierIdSelect.empty();
-
-                            // Генерируем элементы <option> для каждого курьера
-                            data.forEach(function(courier) {
-                                courierIdSelect.append($('<option></option>').val(courier.id).text(courier.username));
-                            });
-
-                            // Выбираем значение из текущего заказа (если оно существует)
-                            var currentCourierId = $("#currentCourierId").val();
-                            if (currentCourierId) {
-                                courierIdSelect.val(currentCourierId);
+                                // Выбираем значение из текущего заказа (если оно существует)
+                                var currentCourierId = $("#currentCourierId").val();
+                                if (currentCourierId) {
+                                    courierIdSelect.val(currentCourierId);
+                                }
+                            },
+                            error: function() {
+                                console.log("Failed to load couriers.");
                             }
-                        },
-                        error: function() {
-                            console.log("Failed to load couriers.");
-                        }
+                        });
                     });
-                });
 
-            </script>
+                </script>
 
-            <label for="status">Status:</label>
-            <select id="status" name="status" class="select-field" required th:disabled="${currentOrder.status == 'Completed'}">
-                <option value="Checking">Checking</option>
-                <option value="Ordering">Ordering</option>
-                <option value="Preparing">Preparing</option>
-                <option value="Completed">Completed</option>
-                <option value="Canceled">Canceled</option>
+                <div class="form-row">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" class="select-field" required th:disabled="${currentOrder.status == 'Completed'}">
+                        <option value="Checking">Checking</option>
+                        <option value="Ordering">Ordering</option>
+                        <option value="Preparing">Preparing</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Canceled">Canceled</option>
+                    </select>
+                </div>
+                <br>
 
-            </select>
-            <br>
+                <button type="submit" class="form-button" th:disabled="${currentOrder.status == 'Completed'}">📋 Change</button>
+                <br>
+                <br>
+                <br>
+                <br>
 
-            <button type="submit" class="form-button" th:disabled="${currentOrder.status == 'Completed'}">Submit</button>
-        </form>
-
-
-
-
-
-
+            </form>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

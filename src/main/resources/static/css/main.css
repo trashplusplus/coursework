@@ -40,20 +40,18 @@ body{
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	background-color: #AAFFAA;
-	
+
 
 }
 
-.container{
-
-	align-items: center;
-	display: flex;
-	text-align: center;
-	max-width: 100%;
-	margin: 60px;
-	
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    margin: 60px;
 }
-
 .wrapTexts{
 	flex-wrap: wrap;
 	text-align: left;
@@ -78,7 +76,8 @@ body{
   border-radius: 10px; /* Закругление углов границы */
   font-size: 17px; /* Размер шрифта */
   outline: none; /* Убрать контур фокуса */
-color: green;
+    color: green;
+
 }
 
 .select-field{
@@ -110,6 +109,7 @@ color: green;
   cursor: pointer; /* Изменить курсор при наведении на кнопку */
   font-weight: bold;
   width: 45%;
+    text-decoration: none;
 }
 
 .basket-button {
@@ -268,3 +268,22 @@ th {
     margin: 0px 0px 100px;
 }
 
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    min-width: 100px;
+    margin-right: 10px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.form-row select,
+.form-row input {
+    width: 100%;
+}

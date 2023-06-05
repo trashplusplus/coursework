@@ -24,13 +24,14 @@
 <div class = "wrapTexts">
     <div class = "productContainer" th:object = "${currentOrder}">
 
-        <h1 class = "H1" th:text="'Order №' + ${currentOrder.id}"></h1>
+        <h1 class = "H1" th:text="'📦 Order №' + ${currentOrder.id}"></h1>
         <h1 class = "H2" th:text ="'To pay: $' + ${currentOrder.cost}"></h1>
         <h1 class = "H2" th:text ="'Customer: ' + ${userService.getById(currentOrder.userId)}"></h1>
         <h1 class = "H2" th:text ="'Destination: ' + ${currentOrder.destination}"></h1>
         <h1 class = "H2" th:text ="'Order date: ' + ${currentOrder.orderDate}"></h1>
         <h1 class = "H2" th:text ="'Phone number: ' + ${currentOrder.phoneNumber}"></h1>
         <h1 class = "H2" th:text ="'Note: ' + ${currentOrder.note}"></h1>
+        <h1 class = "H2" th:text ="'Current Status: ' + ${currentOrder.status}"></h1>
         <h1 class = "H2" th:text ="'Status: ' + ${currentOrder.status}"></h1>
         <h1 class="H2" th:text="'Courier: ' + (${currentOrder.courierId} != null ? ${userService.getById(currentOrder.courierId)} : 'Is not Selected')"></h1>
         <h1 class="H2" th:text="'Operator: ' + (${currentOrder.operatorId} != null ? ${userService.getById(currentOrder.operatorId)} : 'Is not Selected')"></h1>

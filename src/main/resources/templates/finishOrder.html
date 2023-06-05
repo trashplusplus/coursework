@@ -21,35 +21,31 @@
     </ul>
 </div>
 <div class="container">
-    <div class = "wrapTexts">
-        <h1 class = "H1">Finish Panel</h1>
-        <div class = "adminContainer">
-            <h1 class = "H1" th:text="'Total: $' + ${myOrder.cost}"></h1>
+    <div class="wrapTexts">
+        <h1 class="H1">📦 Order Preparation</h1>
+        <div class="adminContainer">
+            <h1 class="H1" th:text="'Total: $' + ${myOrder.cost}"></h1>
             <form th:action="@{/basket/finish/done}" method="post" th:object="${myOrder}">
-                <label for = "address">
-                    Address
-                </label>
-                <input type = "text" class = "input-field" id = "address" th:field="${myOrder.destination}"
-                       required maxlength="100"><br><br>
-                <label for = "phone">
-                    Phone
-                </label>
-                <input type = "text" class = "input-field" id = "phone" th:field="${myOrder.phoneNumber}"
-                       required maxlength="16"><br><br>
-                <label for = "note">
-                    Note
-                </label>
-                <input type = "text" class = "input-field" id = "note" th:field="${myOrder.note}"
-                       required maxlength="100"><br><br>
-                <input type = "hidden" th:field = "${myOrder.userId}">
-                <input type = "hidden" th:field = "${myOrder.cost}">
-                <input type = "hidden" th:field = "${myOrder.orderDate}">
-                <button type="submit" class="basket-button">Ok</button>
+                <div class="form-row">
+                    <label for="address">Address</label>
+                    <input type="text" class="input-field" id="address" th:field="${myOrder.destination}" required maxlength="100">
+                </div>
+                <div class="form-row">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="input-field" id="phone" th:field="${myOrder.phoneNumber}" required maxlength="16">
+                </div>
+                <div class="form-row">
+                    <label for="note">Note</label>
+                    <input type="text" class="input-field" id="note" th:field="${myOrder.note}" required maxlength="100">
+                </div>
+                <input type="hidden" th:field="${myOrder.userId}">
+                <input type="hidden" th:field="${myOrder.cost}">
+                <input type="hidden" th:field="${myOrder.orderDate}">
+                <button type="submit" class="basket-button">📦 Order</button>
             </form>
-
-
         </div>
     </div>
 </div>
+
 </body>
 </html>

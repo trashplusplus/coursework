@@ -170,7 +170,9 @@ public class SimpleController {
     }
 
     @PostMapping("/basket/finish/done")
-    public String postOrderFinishDone(@ModelAttribute("myOrder") Order myOrder, Model model){
+    public String postOrderFinishDone(@ModelAttribute("myOrder") Order myOrder,
+                                      Model model,
+                                      RedirectAttributes redirectAttributes){
         myOrder.setUserId(userService.findByUsername(auth.getName()).getId());
         myOrder.setStatus("Checking");
         System.out.println(myOrder);
@@ -192,6 +194,7 @@ public class SimpleController {
 
 
         model.addAttribute("loggedUsername", auth.getName());
+        redirectAttributes.addFlashAttribute("success", "The order has been submitted for processing.");
         //заказ успешно оформлен, redirectAttributes
         return "redirect:/user";
     }
