@@ -57,11 +57,12 @@
                 <div class="form-row">
                     <label for="courierId" th:disabled="${currentOrder.status != 'Checking'}">Courier:</label>
                     <select id="courierId" name="courierId" class="input-field" required th:disabled="${currentOrder.status != 'Checking'}">
-                        <option th:selected="${currentOrder.courierId != null}" th:value="${currentOrder.courierId}" th:text="${currentOrder.courierId != null ? userService.getById(currentOrder.courierId) : 'Is not Selected'}"></option>
+                        <option th:selected="${currentOrder.courierId == null}" th:value="${currentOrder.courierId}" th:text="${currentOrder.courierId != null ? userService.getById(currentOrder.courierId) : 'Is not Selected'}"></option>
                     </select>
+
                 </div>
                 <br>
-
+<!--                <input type="hidden" id="hiddenCourierId" name="courierId" th:value="${currentOrder.courierId != null && currentOrder.status == 'Checking' ? currentOrder.courierId.toString() : ''}" />-->
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                     $(document).ready(function() {
@@ -80,6 +81,9 @@
 
                                 // Выбираем значение из текущего заказа (если оно существует)
                                 var currentCourierId = $("#currentCourierId").val();
+                                if (Array.isArray(currentCourierId)) {
+                                    currentCourierId = currentCourierId.join(""); // объединение элементов массива без запятых
+                                }
                                 if (currentCourierId) {
                                     courierIdSelect.val(currentCourierId);
                                 }
@@ -89,19 +93,19 @@
                             }
                         });
                     });
-
                 </script>
 
                 <div class="form-row">
                     <label for="status">Status:</label>
                     <select id="status" name="status" class="select-field" required th:disabled="${currentOrder.status == 'Completed'}">
-                        <option value="Checking">Checking</option>
-                        <option value="Ordering">Ordering</option>
-                        <option value="Preparing">Preparing</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Canceled">Canceled</option>
+                        <option value="Checking" th:if="${currentOrder.courierId == null}">Checking</option>
+                        <option value="Ordering" th:if="${currentOrder.status == 'Ready'}">Ordering</option>
+                        <option value="Preparing" th:if="${currentOrder.status == 'Checking'}">Preparing</option>
+                        <option value="Completed" th:if="${currentOrder.status == 'Delivered'}">Completed</option>
+                        <option value="Canceled" th:if="${currentOrder.status == 'Not Delivered'}">Canceled</option>
                     </select>
                 </div>
+
                 <br>
 
                 <button type="submit" class="form-button" th:disabled="${currentOrder.status == 'Completed'}">📋 Change</button>

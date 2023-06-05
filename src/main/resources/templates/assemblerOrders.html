@@ -45,10 +45,14 @@
                 <tr th:each="order : ${orderList}">
                     <td>
                 <span th:switch="${order.status}">
-                    <span th:case="'Completed'">&#x2705;</span>
-                    <span th:case="'Checking'">&#x23F3;</span>
-                    <span th:case="'Ordering'">&#x23F3;</span>
-                    <span th:case="'Canceled'">&#x274C;</span>
+                         <span th:case="'Completed'">&#x2705;</span>
+                <span th:case="'Delivered'">&#x2705;</span>
+                <span th:case="'Checking'">&#x23F3;</span>
+                <span th:case="'Ordering'">&#x23F3;</span>
+                <span th:case="'Canceled'">&#x274C;</span>
+                <span th:case="'Not Delivered'">&#x274C;</span>
+                <span th:case="'Preparing'">📦</span>
+                <span th:case="'Ready'">🟡</span>
                 </span>
                         <span th:text="${order.id}"></span>
                     </td>

@@ -232,15 +232,21 @@ public class SettingsController {
 
     @PostMapping("/operator/status/{orderId}")
     public String operatorChangeStatus(@RequestParam("operatorId") Long operatorId,
-                                       @RequestParam("courierId") String courierId,
+                                       @RequestParam(value = "courierId", required = false) String courierId,
                                        @RequestParam("status") String status,
                                        @PathVariable long orderId,
                                        RedirectAttributes redirectAttributes){
-        Long parsedCourierId = Long.parseLong(courierId);
+        Order myOrder = orderService.getByOrderId(orderId);
+        Long parsedCourierId;
 
+        if(myOrder.getCourierId() == null){
+            parsedCourierId = Long.parseLong(courierId);
+        }else{
+            parsedCourierId = myOrder.getCourierId();
+        }
 
         //System.out.printf("=== %s, %s, %s ===", status, operatorId, courierId);
-        Order myOrder = orderService.getByOrderId(orderId);
+
         System.out.printf("Курьер: %s", userService.getById(parsedCourierId));
 
         if(userService.getById(parsedCourierId).getRole().equals("COURIER")) {
