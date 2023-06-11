@@ -10,7 +10,6 @@
   <ul class="menu">
    <li><a href="/">🌿 Main</a></li>
     <li><a href="#">🌿 Goods</a></li>
-    <li><a href="#">🌿 Info</a></li>
     <li>
         <a th:if="${loggedUsername != null}" th:field="*{loggedUsername}" href = "/user">
             <span>🧩</span>
@@ -22,37 +21,43 @@
 <div class = "container">
 <div class = "wrapTexts">
     <div class = "adminContainer">
-    <h1 class = "H1">add product</h1>
+    <h1 class = "H1">🌲 Add Product</h1>
 
     <form method = "post" th:action = "@{/settings/product}" class = "adminForm">
         <label for = "title">
             Title
         </label>
+        <div class="form-row">
         <input type = "text" class = "input-field" id = "title" th:field="${myProduct.title}" required maxlength="100"><br><br>
-        <label for = "description">
+        </div>
+            <label for = "description">
             Description
         </label>
+        <div class="form-row">
         <input type = "text" class = "input-field" th:field = "${myProduct.description}"id = "description" name = "description" required maxlength="250"><br><br>
-        <label for ="cost">
+        </div>
+            <label for ="cost">
             Cost
         </label>
+        <div class="form-row">
         <input type = "text" class = "input-field" th:field = "${myProduct.cost}"id = "cost" name = "cost" required maxlength="10"><br><br>
-
+        </div>
         <label for = "state">
             State
         </label>
-
+        <div class="form-row">
         <select id = "state" class = "select-field" th:field = "${myProduct.state}">
             <option value="Available">Available</option>
             <option value="Not Available">Not Available</option>
             <option value="Pending">Pending</option>
         </select>
-
+        </div>
 
         <br>
         <br>
-        <input type="submit" value="🌲 Add product", class = "form-button">
-
+        <div class="form-row">
+        <input type="submit" value="🌲 Add", class = "form-button">
+        </div>
 
         <p th:if="${failure}" th:text="'❌' + ${failure}" class="error"></p>
         <p th:if="${success}" th:text="'✔️' + ${success}" class="error"></p>

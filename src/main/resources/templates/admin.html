@@ -27,16 +27,20 @@
 
 
    <form method = "post" th:action = "@{'/settings' + '/admin/role'}" class = "adminForm">
-        <label for = "roleUsername">
+       <div class="form-row">
+       <label for = "roleUsername">
           Username
         </label>
-
+        </div>
+       <div class="form-row">
        <input type = "text" class = "input-field" id = "roleUsername" name="roleUsername" required><br><br>
-
+       </div>
+           <div class="form-row">
        <label for = "userRole">
             Set Role
        </label>
-
+       </div>
+       <div class="form-row">
        <select class = "select-field" id = "userRole" name = "userRole">
            <option value="USER">USER</option>
            <option value="COURIER">COURIER</option>
@@ -44,11 +48,11 @@
            <option value="ASSEMBLER">ASSEMBLER</option>
            <option value="ADMIN">ADMIN</option>
        </select>
-
-        <br>
+       </div>
        <br>
+       <div class="form-row">
        <input type="submit" value="🌲 Set Role", class = "form-button">
-
+       </div>
 
        <p th:if="${failure}" th:text="${failure}" class="error"></p>
        <p th:if="${success}" th:text="${success}" class="error"></p>
