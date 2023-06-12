@@ -17,6 +17,7 @@ public class RestController {
     public RestController(MyUserServiceImpl userService){
         this.userService = userService;
     }
+    //возвращает всех курьеров
     @GetMapping
     public List<MyUser> getAllCouriers(){
        return userService.findAllCouriers();
