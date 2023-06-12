@@ -101,6 +101,7 @@
                         <option value="Checking" th:if="${currentOrder.courierId == null}">Checking</option>
                         <option value="Ordering" th:if="${currentOrder.status == 'Ready'}">Ordering</option>
                         <option value="Preparing" th:if="${currentOrder.status == 'Checking'}">Preparing</option>
+                        <option value="Canceled" th:if="${currentOrder.status == 'Checking'}">Canceled</option>
                         <option value="Completed" th:if="${currentOrder.status == 'Delivered'}">Completed</option>
                         <option value="Canceled" th:if="${currentOrder.status == 'Not Delivered'}">Canceled</option>
                     </select>
