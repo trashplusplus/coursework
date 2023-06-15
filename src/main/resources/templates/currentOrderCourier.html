@@ -60,6 +60,7 @@
             <select id="status" name="status" class="select-field">
                 <option value="Delivered">Delivered</option>
                 <option value="Not Delivered">Not Delivered</option>
+                <option value="Ordering" th:if="${currentOrder.status == 'Ready'}">Ordering</option>
             </select>
             <br>
             <br>
