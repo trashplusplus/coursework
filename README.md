@@ -7,4 +7,6 @@
 ![image](https://github.com/trashplusplus/coursework/assets/19663951/cd570e83-c3bd-466f-8b9e-65fbe8ddedbd)
 
 
-The website is a platform for construction materials with features such as order placement, order editing, status change, order history, shopping cart, and a product catalog. The website includes user roles such as User, Admin, Operator, Assembler, and Courier. Technologies used: Java, Spring Boot, Hibernate, PostgreSQL, HTML + CSS, Thymeleaf, Ajax (JavaScript).
+The website is a platform for construction materials with features such as order placement, order editing, status change, order history, shopping cart, and a product catalog. The website includes user roles such as User, Admin, Operator, Assembler, and Courier. 
+
+Technologies used: **Java**, **Spring Boot**, **Hibernate**, **PostgreSQL**, **HTML + CSS**, **Thymeleaf**, **Ajax (JavaScript)**.
